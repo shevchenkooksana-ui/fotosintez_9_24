@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Аркуш завдань: Фотосинтез</title>
+<link href="https://fonts.googleapis.com/css2?family=Roboto:wght@500;700&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#eaf6ee;--card:#fff;--tx:#10231a;--mut:#2f4a3c;--line:#9cc5ac;--ok:#0b7a3b;--okb:#d6f5e1;--bad:#b3261e;--badb:#fde0dd;--ac:#0b6b3a;--act:#fff;
+box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#0d1f16;--card:#16301f;--tx:#f1fbf4;--mut:#c4e3cf;--line:#3f7a58;--ok:#7ee2a2;--okb:#14452a;--bad:#ffb4ab;--badb:#5a1f1a;--ac:#58d18a;--act:#06281a}}
+:root[data-theme="dark"]{--bg:#0d1f16;--card:#16301f;--tx:#f1fbf4;--mut:#c4e3cf;--line:#3f7a58;--ok:#7ee2a2;--okb:#14452a;--bad:#ffb4ab;--badb:#5a1f1a;--ac:#58d18a;--act:#06281a}
+html{scroll-padding-top:env(safe-area-inset-top,0px)}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--tx);font:500 17px/1.55 Roboto,Arial,sans-serif}
+h1,h2,h3,b,button{font-weight:700}
+header{background:linear-gradient(120deg,#0b6b3a,#1b9aaa 60%,#f2b705);color:#fff;padding:22px 16px;text-align:center;text-shadow:0 1px 3px rgba(0,0,0,.45)}
+header h1{margin:0 0 4px;font-size:clamp(22px,5vw,32px)}header p{margin:0}
+main{max-width:860px;margin:0 auto;padding:14px}
+nav{display:flex;gap:8px;flex-wrap:wrap;margin:6px 0 14px}
+nav button,.btn{font:700 16px Roboto,Arial,sans-serif;border:2px solid var(--ac);background:var(--card);color:var(--tx);padding:10px 16px;border-radius:12px;cursor:pointer}
+nav button.on,.btn{background:var(--ac);color:var(--act)}
+.card{background:var(--card);border:2px solid var(--line);border-top:8px solid var(--c,var(--ac));border-radius:14px;padding:14px 16px;margin:0 0 16px}
+.card h2{margin:0 0 4px;color:var(--c,var(--ac));font-size:20px}
+.hint{color:var(--mut);margin:0 0 10px}
+.q{padding:8px 10px;margin:6px 0;border-radius:10px;border:2px solid transparent;background:rgba(127,127,127,.08)}
+.q label{margin-right:16px;cursor:pointer;display:inline-block;padding:2px 0}
+.ok{border-color:var(--ok)!important;background:var(--okb)!important}
+.bad{border-color:var(--bad)!important;background:var(--badb)!important}
+select,input[type=text],textarea{font:500 16px Roboto,Arial,sans-serif;color:var(--tx);background:var(--card);border:2px solid var(--line);border-radius:8px;padding:6px 8px;max-width:100%}
+textarea{width:100%;min-height:80px}
+#nm{width:100%;font-size:18px}
+.row{display:flex;gap:8px;align-items:center;margin:6px 0;flex-wrap:wrap}
+.res{margin-left:10px;color:var(--c,var(--ac))}
+.btn{margin-top:8px}.sm{padding:6px 12px;font-size:15px}
+.model{display:none;margin:6px 0;padding:8px 10px;border-left:6px solid var(--ok);background:var(--okb)}
+.bar{height:14px;background:rgba(127,127,127,.25);border-radius:8px;overflow:hidden}.bar i{display:block;height:100%;background:var(--c)}
+.big{font-size:26px;color:var(--ac)}
+table{border-collapse:collapse;width:100%}td,th{border:1px solid var(--line);padding:6px 8px;text-align:left}
+.tab{display:none}.tab.on{display:block}
+.lv{--c:#2b7de9}.lv2{--c:#e07a00}.lv3{--c:#c2185b}
+li{margin:4px 0}
+.opt{display:block;padding:8px 10px;margin:6px 0;border:2px solid var(--line);border-radius:10px;cursor:pointer}
+.opt:has(input:checked){border-color:var(--c);background:var(--okb)}
+</style>
+</head>
+<body>
+<header><h1>🌿 Фотосинтез і пластичний обмін</h1><p>Аркуш завдань · Біологія, 9 клас · § 24</p></header>
+<main>
+<nav>
+<button class="on" data-t="t1">📝 Завдання</button>
+<button data-t="t2">⭐ Самооцінювання</button>
+<button data-t="t3">🏠 Домашнє завдання</button>
+</nav>
+
+<section id="t1" class="tab on">
+<div class="card"><h2>👤 Учень / учениця</h2><input type="text" id="nm" placeholder="Прізвище та ім’я" autocomplete="name"></div>
+<div id="sections"></div>
+<button class="btn" onclick="finish()">Здати роботу (змінити відповіді буде неможливо) →</button>
+</section>
+
+<section id="t2" class="tab">
+<div class="card" style="--c:#7b3fe4"><h2>⭐ Сторінка самооцінювання</h2><div id="sum"><p class="hint">Спочатку виконайте завдання й натисніть «Завершити».</p></div></div>
+</section>
+
+<section id="t3" class="tab">
+<div class="card" style="--c:#7b3fe4"><h2>🏠 Домашнє завдання</h2><p class="hint">Оберіть рівень і ОДНЕ завдання в ньому. Виконуйте лише обране завдання.</p></div><div id="hw"></div>
+</section>
+</main>
+
+<script>
+const $=s=>document.querySelector(s);
+const opts=a=>a.map(o=>`<option>${o}</option>`).join('');
+const TF=[["Фотосинтез відбувається в мітохондріях клітин рослин.",0],["У молекулі хлорофілу замість Феруму присутній Магній.",1],["Реакції світлової фази відбуваються лише за наявності світла.",1],["Кисень, що виділяється під час фотосинтезу, утворюється з вуглекислого газу.",0],["Реакції темнової фази відбуваються в стромі хлоропластів.",1]];
+const G=["хлоропластах","мітохондріях","хлорофіли","цитохроми","фотолізом","гліколізом","кисень","вуглекислий газ"];
+const gapT=[["Фотосинтез у рослин відбувається в ","хлоропластах"],[", де містяться пігменти — ","хлорофіли"],[". Розщеплення води на світлі називають ","фотолізом"],[", а в результаті виділяється ","кисень"]];
+const M=[["Тилакоїди","Б"],["Каротиноїди","В"],["НАДФ","Г"],["АТФ-синтетаза","А"]];
+const MT=["А. фермент, що синтезує АТФ у мембрані тилакоїдів","Б. мембранні структури хлоропластів, де відбувається світлова фаза","В. допоміжні пігменти, що розширюють спектр поглинання світла","Г. сполука, яка приймає електрони й Гідроген у фотосистемі І"];
+const SQ=[["Енергію світла поглинає молекула хлорофілу, і її електрон збуджується","2"],["Фотон (квант світла) поглинається хлорофілом","1"],["Відновлений НАДФ постачає Гідроген для синтезу глюкози в темновій фазі","5"],["Електрон надходить до ланцюга перенесення електронів","3"],["Електрони досягають фотосистеми І й відновлюють НАДФ","4"]];
+const T=[["Основними подіями світлової фази є:",["синтез глюкози та фіксація CO₂","синтез АТФ і фотоліз води","розщеплення глюкози","синтез білків на рибосомах"],1],["Яку роль виконують каротиноїди?",["утворюють кисень","фіксують CO₂","розширюють спектр поглинання світла","синтезують АТФ"],2],["Де відбувається темнова фаза фотосинтезу?",["у тилакоїдах","у стромі хлоропластів","у матриксі мітохондрій","у цитоплазмі"],1],["Чим фотосинтез відрізняється від хемосинтезу?",["утворенням АТФ","типом клітин","джерелом енергії (світло чи хімічні реакції)","нічим"],2]];
+const P=[["Порівняйте молекули гемоглобіну та хлорофілу: що в них спільного й чим вони відрізняються?",[/порфірин|схож|подібн|спільн/i,/ферум|залізо|магн/i,/гідрофіл|гідрофоб|карбоксил|хвіст/i]],["Рослину поставили в повністю темну кімнату на добу. Які процеси припиняться першими й чому?",[/світлов/i,/фотоліз|кисень|o2|o₂|атф|надф/i,/темнов|зупин|припин/i]]];
+const L=(i,t)=>`<div class="q">${i}. ${t}</div>`;
+const shuf=a=>a.map((x,i)=>[x,(i*7+3)%a.length+i/100]).sort((a,b)=>a[1]-b[1]).map(x=>x[0]);
+const S=[
+{id:"tf",t:"1. Так чи ні?",c:"#2b7de9",h:"Оберіть «Так» або «Ні».",b:TF.map((x,i)=>`<div class="q" data-a="${x[1]}">${i+1}. ${x[0]}<br><label><input type="radio" name="tf${i}" value="1"> Так</label><label><input type="radio" name="tf${i}" value="0"> Ні</label></div>`).join('')},
+{id:"g",t:"2. Заповніть пропуски",c:"#e07a00",h:"Оберіть слово зі списку.",b:'<div class="q">'+gapT.map((x,i)=>`${x[0]}<select data-a="${x[1]}"><option value="">…</option>${opts(G)}</select>`).join('')+'.</div>'},
+{id:"m",t:"3. Встановіть відповідність",c:"#c2185b",h:"До кожного поняття оберіть літеру визначення.",b:`<div class="q">${MT.map(x=>x+"<br>").join('')}</div>`+M.map((x,i)=>`<div class="row">${i+1}. ${x[0]} → <select data-a="${x[1]}"><option value="">…</option>${opts(["А","Б","В","Г"])}</select></div>`).join('')},
+{id:"s",t:"4. Послідовність подій світлової фази",c:"#7b3fe4",h:"Вкажіть порядковий номер події (1–5).",b:SQ.map((x,i)=>`<div class="row"><select data-a="${x[1]}"><option value="">№</option>${opts([1,2,3,4,5])}</select> ${x[0]}</div>`).join('')},
+{id:"t",t:"5. Тестові завдання",c:"#0b8f8f",h:"Одна правильна відповідь.",b:T.map((x,i)=>`<div class="q" data-a="${x[2]}">${i+1}. ${x[0]}<br>${x[1].map((o,j)=>`<label><input type="radio" name="t${i}" value="${j}"> ${o}</label><br>`).join('')}</div>`).join('')},
+{id:"p",t:"6. Практичні завдання",c:"#5a8f00",h:"Дайте розгорнуту відповідь. Оцінка (0–2 бали) виставляється автоматично за наявністю ключових понять.",b:P.map((x,i)=>`<div class="q"><b>${i+1}. ${x[0]}</b><textarea placeholder="Ваша відповідь"></textarea><div class="pr" style="margin-top:6px;color:var(--c)"></div></div>`).join('')}
+];
+const ADV={tf:"Повторіть § 24: що відбувається в хлоропластах і чим відрізняються хлорофіл та гемоглобін. Складіть 5 власних тверджень «Так/Ні» й перевірте їх із другом.",g:"Складіть міні-словник термінів: хлоропласт, хлорофіл, фотоліз, тилакоїд. Вивчайте їх із картками.",m:"Намалюйте схему тилакоїда й підпишіть: фотосистеми, каротиноїди, НАДФ, АТФ-синтетазу.",s:"Перемалюйте мал. 24.2 і пронумеруйте кроки руху електрона. Повторіть шлях за схемою вголос.",t:"Розв’яжіть більше тестів: після кожної помилки записуйте, чому правильна відповідь інша.",p:"Тренуйтеся давати розгорнуті відповіді: тези → пояснення → висновок. Порівнюйте мал. 24.1 і 24.2."};
+const R={};
+const HW=[["lv","🔵 Базовий рівень (4–6 балів)",["Заповніть таблицю порівняння світлової й темнової фаз: місце перебігу, потреба в світлі, головні події, продукти.","Запишіть означення термінів: фотосинтез, хлорофіл, фотоліз води, фотосистема. До кожного додайте приклад або коротке пояснення.","Складіть 6 тестових запитань за § 24 (по 4 варіанти відповіді) і запишіть правильні відповіді.","Намалюйте хлоропласт, підпишіть 6 його частин і коротко поясніть, що відбувається в тилакоїдах і в стромі."]],["lv2","🟠 Достатній рівень (7–9 балів)",["Складіть порівняльну таблицю пластичного й енергетичного обміну (не менше 5 ознак) і поясніть, чому світлова фаза — енергетичний обмін, а темнова — пластичний.","Намалюйте схему перенесення електронів у світловій фазі (ФС II → ланцюг → ФС I → НАДФ) і поясніть її в 5–6 реченнях.","Порівняйте будову гемоглобіну й хлорофілу (мал. 24.1): гідрофільні та гідрофобні ділянки, роль Феруму й Магнію. Оформіть таблицю та висновок.","Розв’яжіть 3 ситуаційні задачі: рослина в темряві; нестача Феруму в ґрунті (хлороз); штучне освітлення. Поясніть наслідки для фотосинтезу."]],["lv3","🔴 Високий рівень (10–12 балів)",["Міні-дослідження: опишіть дослід про вплив світла на фотосинтез (мета, гіпотеза, обладнання, хід, очікуваний результат); за можливості проведіть його й додайте фото.","Підготуйте повідомлення або презентацію (5 слайдів) про використання хлорофілу у фармакології; вкажіть джерела.","Напишіть есе «Яким було б життя на Землі без фотосинтезу?» (10–12 речень) з аргументами щодо кисню, їжі та енергії.","Створіть інфографіку «Шлях електрона й енергії у світловій фазі» та порівняйте її з кисневим етапом енергетичного обміну в мітохондріях."]]];
+$('#hw').innerHTML=HW.map((h,i)=>`<div class="card ${h[0]}"><h2>${h[1]}</h2><p class="hint">Оберіть одне завдання:</p>${h[2].map((t,j)=>`<label class="opt"><input type="radio" name="hw${i}"> <b>${j+1}.</b> ${t}</label>`).join('')}</div>`).join('');
+$('#sections').innerHTML=S.map(s=>`<div class="card" id="c_${s.id}" style="--c:${s.c}"><h2>${s.t}</h2><p class="hint">${s.h}</p>${s.b}<span class="res"></span></div>`).join('');
+function val(e){return e.tagName=='SELECT'?e.value:(e.querySelector('input:checked')||{}).value}
+function chk(id){const c=$('#c_'+id);let g=0,m=0;
+c.querySelectorAll('[data-a]').forEach(e=>{m++;const ok=val(e)==e.dataset.a;if(ok)g++;e.classList.remove('ok','bad');e.classList.add(ok?'ok':'bad')});
+c.querySelectorAll('textarea').forEach((e,i)=>{m+=2;const sc=Math.min(2,P[i][1].filter(r=>r.test(e.value)).length);g+=sc;e.nextElementSibling.textContent='Оцінка: '+sc+' з 2'});c.querySelectorAll('input,select,textarea').forEach(e=>e.disabled=true);
+R[id]=[g,m];c.querySelector('.res').textContent=`Результат: ${g} з ${m}`;return[g,m]}
+document.querySelectorAll('nav button').forEach(b=>b.onclick=()=>go(b.dataset.t));
+function go(t){document.querySelectorAll('.tab').forEach(x=>x.classList.toggle('on',x.id==t));document.querySelectorAll('nav button').forEach(x=>x.classList.toggle('on',x.dataset.t==t));scrollTo(0,0)}
+let done=0;function finish(){if(done)return go('t2');const nm=$('#nm');if(!nm.value.trim()){nm.placeholder='Введіть прізвище та ім’я!';nm.style.borderColor='#b3261e';nm.focus();return}done=1;nm.disabled=true;let G=0,M=0,rows='',adv='';
+S.forEach(s=>{const[g,m]=chk(s.id);G+=g;M+=m;const p=Math.round(g/m*100);
+rows+=`<tr style="--c:${s.c}"><td>${s.t}</td><td>${g}/${m}</td><td><div class="bar"><i style="width:${p}%"></i></div></td></tr>`;
+adv+=`<li><b>${s.t}:</b> ${p>=70?"✅ Чудово! Тема засвоєна, продовжуйте в тому ж дусі.":"💡 "+ADV[s.id]}</li>`});
+const gr=Math.max(1,Math.round(G/M*12)),n=$('#nm').value.trim()||"Учень/учениця";
+const lv=gr>=10?"високий":gr>=7?"достатній":gr>=4?"середній":"початковий";
+const hw=gr>=10?"Спробуйте домашнє завдання високого рівня.":gr>=7?"Рекомендуємо домашнє завдання достатнього рівня.":"Радимо почати з домашнього завдання базового рівня.";
+$('#sum').innerHTML=`<p><b>${n}</b></p><p class="big">${G} з ${M} балів · оцінка ${gr}/12</p><p>Рівень навчальних досягнень: <b>${lv}</b>. ${hw}</p><table>${rows}</table><h3>Індивідуальні поради</h3><ul>${adv}</ul><button class="btn" onclick="go('t3')">До домашнього завдання →</button>`;go('t2')}
+</script>
+</body>
+</html>
